@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
+use App\Models\Note;
 
 class HomeController extends Controller
 {
@@ -24,5 +26,17 @@ class HomeController extends Controller
     public function index()
     {
         return view('create');
+    }
+
+    /**
+     * @param Request $request
+     */
+
+    public function store(Request $request) {
+        $posts = $request->all();
+
+        Note::insert(['content' => $posts['content'], 'user_id' => \Auth::id()]);
+
+        return redirect( route('home') );
     }
 }
