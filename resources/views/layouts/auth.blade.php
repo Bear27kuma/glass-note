@@ -14,7 +14,6 @@
     
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 </head>
 <body class="bg-gray-100 h-screen antialiased leading-none font-sans">
     <div id="app">
@@ -46,15 +45,7 @@
             </div>
         </header>
 
-        {{--3 Columns Layout--}}
-        <div class="bg-gray-300 grid sm:grid-cols-12 note-height sm:p-32">
-            <div class="sm:col-span-2 border-2 border-orange-400">左カラム</div>
-            <div class="sm:col-span-4 border-2 border-orange-400">中央カラム</div>
-            <div class="sm:col-span-6 border-2 border-orange-400">
-                右カラム
-                @yield('content')
-            </div>
-        </div>
+        @yield('content')
     </div>
 </body>
 </html>
