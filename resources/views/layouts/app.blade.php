@@ -48,8 +48,30 @@
 
         {{--3 Columns Layout--}}
         <div class="bg-gray-300 grid sm:grid-cols-12 note-height sm:p-32">
-            <div class="sm:col-span-2 border-2 border-orange-400">左カラム</div>
-            <div class="sm:col-span-4 border-2 border-orange-400">中央カラム</div>
+            <div class="sm:col-span-2 border-2 border-orange-400">
+                <section class="flex flex-col break-words bg-white sm:border-1 sm:rounded-md sm:shadow-sm sm:shadow-lg">
+                    <header class="font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 sm:rounded-t-md">
+                        左カラム
+                    </header>
+                    <div class="w-full p-6">
+                        <p class="text-gray-700">
+                            You are in the left column!
+                        </p>
+                    </div>
+                </section>
+            </div>
+            <div class="sm:col-span-4 border-2 border-orange-400">
+                <section class="flex flex-col break-words bg-white sm:border-1 sm:rounded-md sm:shadow-sm sm:shadow-lg">
+                    <header class="font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 sm:rounded-t-md">
+                        中央カラム
+                    </header>
+                    <div class="w-full p-6">
+                        <p class="text-gray-700">
+                            You are in the center column!
+                        </p>
+                    </div>
+                </section>
+            </div>
             <div class="sm:col-span-6 border-2 border-orange-400">
                 右カラム
                 @yield('content')
