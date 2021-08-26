@@ -16,7 +16,7 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 </head>
-<body class="bg-gray-100 h-screen antialiased leading-none font-sans">
+<body class="bg-gray-100 h-screen antialiased leading-none font-sans text-xl">
     <div id="app">
         <header class="bg-blue-900 py-6">
             <div class="container mx-auto flex justify-between items-center px-6">
@@ -48,9 +48,9 @@
 
         {{--3 Columns Layout--}}
         <div class="bg-gray-300 grid sm:grid-cols-12 note-height sm:p-32">
-            <div class="sm:col-span-2 border-2 border-orange-400">
-                <section class="flex flex-col break-words bg-white sm:border-1 sm:rounded-md sm:shadow-sm sm:shadow-lg">
-                    <header class="font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 sm:rounded-t-md">
+            <div class="sm:col-span-2">
+                <section class="flex flex-col break-words bg-white sm:border-1 sm:rounded-l-lg sm:shadow-sm sm:shadow-lg">
+                    <header class="font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 sm:rounded-tl-lg">
                         左カラム
                     </header>
                     <div class="w-full p-6">
@@ -60,9 +60,9 @@
                     </div>
                 </section>
             </div>
-            <div class="sm:col-span-4 border-2 border-orange-400">
-                <section class="flex flex-col break-words bg-white sm:border-1 sm:rounded-md sm:shadow-sm sm:shadow-lg">
-                    <header class="font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 sm:rounded-t-md">
+            <div class="sm:col-span-4">
+                <section class="flex flex-col break-words bg-white sm:border-1 sm:shadow-sm sm:shadow-lg">
+                    <header class="font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8">
                         中央カラム
                     </header>
                     <div class="w-full p-6">
@@ -72,8 +72,7 @@
                     </div>
                 </section>
             </div>
-            <div class="sm:col-span-6 border-2 border-orange-400">
-                右カラム
+            <div class="sm:col-span-6 ">
                 @yield('content')
             </div>
         </div>
