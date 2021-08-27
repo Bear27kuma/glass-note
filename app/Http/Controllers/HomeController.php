@@ -25,6 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+
         return view('create');
     }
 
@@ -37,7 +38,6 @@ class HomeController extends Controller
         $posts = $request->all();
 
         Note::insert(['content' => $posts['content'], 'user_id' => \Auth::id()]);
-
         return redirect( route('home') );
     }
 }

@@ -175,6 +175,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*
+         * DataBase Query Service Providers...
+         */
+        App\Providers\DataBaseQueryServiceProvider::class,
     ],
 
     /*
