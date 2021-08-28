@@ -7,8 +7,9 @@
                 <header class="font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 sm:rounded-tr-lg">
                     Edit a note
                 </header>
-                <form class="w-full my-6 px-6 sm:my-8 sm:px-8" action="{{ route('store') }}" method="POST">
+                <form class="w-full my-6 px-6 sm:my-8 sm:px-8" action="{{ route('update') }}" method="POST">
                     @csrf
+                    <input type="hidden" name="note_id" value="{{ $edit_note['id'] }}" />
                     <div class="flex flex-wrap">
                         <label for="note" class="text-gray-700 w-full">
                             <textarea id="note" name="content" class="form-input w-full mb-6 sm:mb-8 px-4 py-2 text-2xl text-gray-700 placeholder-gray-400 rounded-lg border-2 border-gray-300 focus:outline-none focus:ring-4 focus:ring-purple-600 focus:border-transparent" rows="10" placeholder="Enter your content here...">{{ $edit_note['content'] }}</textarea>

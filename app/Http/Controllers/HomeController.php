@@ -48,7 +48,10 @@ class HomeController extends Controller
     }
 
 
-
+    /**
+     * @param $id
+     * @return View
+     */
     public function edit($id)
     {
         $notes = Note::select('notes.*')
@@ -60,5 +63,18 @@ class HomeController extends Controller
         $edit_note = Note::find($id);
 
         return view('edit', compact('notes', 'edit_note'));
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+
+    public function update(Request $request) {
+        $posts = $request->all();
+
+        Note::where('id', '=', $posts['note_id'])->update(['content' => $posts['content']]);
+
+        return redirect( route('home') );
     }
 }
