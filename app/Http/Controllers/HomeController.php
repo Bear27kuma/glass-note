@@ -25,6 +25,12 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $notes = Note::select('notes.*')
+            ->where('user_id', '=', \Auth::id())
+            ->whereNull('deleted_at')
+            ->orderBy('updated_at', 'DESC')
+            ->get();
+
         return view('create');
     }
 
