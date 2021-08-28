@@ -47,7 +47,7 @@
         </header>
 
         {{--3 Columns Layout--}}
-        <div class="bg-gray-300 grid sm:grid-cols-12 note-height sm:p-32">
+        <div class="bg-gray-300 grid sm:grid-cols-12 note-height sm:p-24">
             <div class="sm:col-span-2">
                 <section class="flex flex-col break-words bg-white sm:border-1 sm:rounded-l-lg sm:shadow-sm sm:shadow-lg">
                     <header class="font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 sm:rounded-tl-lg">
@@ -63,12 +63,28 @@
             <div class="sm:col-span-4">
                 <section class="flex flex-col break-words bg-white sm:border-1 sm:shadow-sm sm:shadow-lg">
                     <header class="font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8">
-                        中央カラム
+                        Notes List
                     </header>
-                    <div class="w-full p-6">
-                        <p class="text-gray-700">
-                            You are in the center column!
-                        </p>
+                    <div class="w-full p-3">
+                        <ul class="flex flex-col">
+                            @foreach($notes as $note)
+                                <li class="flex flex-row mb-2 border-gray-400">
+                                    <a href="#"
+                                       class="w-full flex justify-between items-center p-4 transition duration-500 shadow ease-in-out transform hover:-translate-y-1 hover:shadow-lg select-note cursor-pointer bg-white rounded-md">
+                                        <div class="flex flex-col">
+                                            <p class="mb-2">{{ $note['content'] }}</p>
+                                            <span class="text-gray-400 text-sm">{{ $note['updated_at'] }}</span>
+                                        </div>
+                                        <button class="flex justify-end">
+                                            <svg width="12" fill="currentColor" height="12" class="hover:text-gray-800 dark:hover:text-white dark:text-gray-200 text-gray-500" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M1363 877l-742 742q-19 19-45 19t-45-19l-166-166q-19-19-19-45t19-45l531-531-531-531q-19-19-19-45t19-45l166-166q19-19 45-19t45 19l742 742q19 19 19 45t-19 45z">
+                                                </path>
+                                            </svg>
+                                        </button>
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
                     </div>
                 </section>
             </div>
