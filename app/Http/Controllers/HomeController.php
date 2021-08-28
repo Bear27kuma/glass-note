@@ -46,4 +46,19 @@ class HomeController extends Controller
 
         return redirect( route('home') );
     }
+
+
+
+    public function edit($id)
+    {
+        $notes = Note::select('notes.*')
+            ->where('user_id', '=', \Auth::id())
+            ->whereNull('deleted_at')
+            ->orderBy('updated_at', 'DESC')
+            ->get();
+
+        $edit_note = Note::find($id);
+
+        return view('edit', compact('notes', 'edit_note'));
+    }
 }

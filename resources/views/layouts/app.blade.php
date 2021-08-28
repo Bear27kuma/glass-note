@@ -69,7 +69,7 @@
                         <ul class="flex flex-col">
                             @foreach($notes as $note)
                                 <li class="flex flex-row mb-2 border-gray-400">
-                                    <a href="#"
+                                    <a href="/edit/{{ $note['id'] }}"
                                        class="w-full flex justify-between items-center p-4 transition duration-500 shadow ease-in-out transform hover:-translate-y-1 hover:shadow-lg select-note cursor-pointer bg-white rounded-md">
                                         <div class="flex flex-col">
                                             <p class="mb-2">{{ $note['content'] }}</p>
