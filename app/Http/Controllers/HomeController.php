@@ -77,4 +77,17 @@ class HomeController extends Controller
 
         return redirect( route('home') );
     }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+
+    public function destroy(Request $request) {
+        $posts = $request->all();
+
+        Note::where('id', '=', $posts['note_id'])->update(['deleted_at' => date('Y-m-d H:i:s', time())]);
+
+        return redirect( route('home') );
+    }
 }

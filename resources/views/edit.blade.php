@@ -4,8 +4,13 @@
     <main class="sm:container">
         <div class="w-full">
             <section class="flex flex-col break-words bg-white sm:border-1 sm:rounded-r-lg sm:shadow-sm sm:shadow-lg">
-                <header class="font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 sm:rounded-tr-lg">
+                <header class="relative font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 sm:rounded-tr-lg">
                     Edit a note
+                    <form action="{{ route('destroy') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="note_id" value="{{ $edit_note['id'] }}" />
+                        <button class="absolute top-3 right-6 sm:right-8 px-4 py-2 text-lg text-white font-bold text-center font-semibold bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-offset-2 rounded-lg focus:ring-indigo-500 focus:ring-offset-indigo-200 transition ease-in duration-200" type="submit">Delete</button>
+                    </form>
                 </header>
                 <form class="w-full my-6 px-6 sm:my-8 sm:px-8" action="{{ route('update') }}" method="POST">
                     @csrf
