@@ -6,9 +6,7 @@ module.exports = {
         './resources/views/**/*.blade.php',
         './resources/css/**/*.css',
     ],
-    theme: {
-        extend: {}
-    },
+    theme: {},
     variants: {},
     plugins: [
         require('@tailwindcss/ui'),

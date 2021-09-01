@@ -65,7 +65,7 @@
                     <header class="font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8">
                         Notes List
                     </header>
-                    <div class="w-full p-3">
+                    <div class="w-full p-3 overflow-scroll">
                         <ul class="flex flex-col">
                             @foreach($notes as $note)
                                 <li class="flex flex-row mb-2 border-gray-400">

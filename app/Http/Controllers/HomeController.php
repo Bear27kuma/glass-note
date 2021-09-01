@@ -34,7 +34,13 @@ class HomeController extends Controller
             ->orderBy('updated_at', 'DESC')
             ->get();
 
-        return view('create', compact('notes'));
+        $tags = Tag::where('user_id', '=', \Auth::id())
+            ->whereNull('deleted_at')
+            ->orderBy('id', 'DESC')
+            ->get();
+
+
+        return view('create', compact('notes', 'tags'));
     }
 
     /**
@@ -48,11 +54,18 @@ class HomeController extends Controller
 
         // ===== トランザクション開始 =====
         DB::transaction(function () use($posts) {
+            // ノートIDをインサートして取得
             $note_id = Note::insertGetId(['content' => $posts['content'], 'user_id' => \Auth::id()]);
+            // タグが存在するかどうかを真偽値で返す
             $tag_exists = Tag::where('user_id', '=', \Auth::id())->where('name', '=', $posts['new_tag'])->exists();
+            // 新規タグが入っているかのチェック（ない場合に新しくインサートする）
             if (!empty($posts['new_tag']) && !$tag_exists) {
                 $tag_id = Tag::insertGetId(['user_id' => \Auth::id(), 'name' => $posts['new_tag']]);
                 NoteTag::insert(['note_id' => $note_id, 'tag_id' => $tag_id]);
+            }
+            // 既存タグが紐付けられた場合 -> note_tagsにインサート
+            foreach($posts['tags'] as $tag) {
+                NoteTag::insert(['note_id' => $note_id, 'tag_id' => $tag]);
             }
         });
         // ===== トランザクション終了 =====
