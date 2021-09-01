@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use App\Models\Note;
+use App\Models\Tag;
+use App\Models\NoteTag;
+use DB;
 
 class HomeController extends Controller
 {
@@ -37,12 +40,22 @@ class HomeController extends Controller
     /**
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Throwable
      */
 
     public function store(Request $request) {
         $posts = $request->all();
 
-        Note::insert(['content' => $posts['content'], 'user_id' => \Auth::id()]);
+        // ===== トランザクション開始 =====
+        DB::transaction(function () use($posts) {
+            $note_id = Note::insertGetId(['content' => $posts['content'], 'user_id' => \Auth::id()]);
+            $tag_exists = Tag::where('user_id', '=', \Auth::id())->where('name', '=', $posts['new_tag'])->exists();
+            if (!empty($posts['new_tag']) && !$tag_exists) {
+                $tag_id = Tag::insertGetId(['user_id' => \Auth::id(), 'name' => $posts['new_tag']]);
+                NoteTag::insert(['note_id' => $note_id, 'tag_id' => $tag_id]);
+            }
+        });
+        // ===== トランザクション終了 =====
 
         return redirect( route('home') );
     }
