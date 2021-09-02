@@ -28,19 +28,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $notes = Note::select('notes.*')
-            ->where('user_id', '=', \Auth::id())
-            ->whereNull('deleted_at')
-            ->orderBy('updated_at', 'DESC')
-            ->get();
-
         $tags = Tag::where('user_id', '=', \Auth::id())
             ->whereNull('deleted_at')
             ->orderBy('id', 'DESC')
             ->get();
 
         // compactメソッドに変数名を指定すると、Viewに値を渡せる
-        return view('create', compact('notes', 'tags'));
+        return view('create', compact('tags'));
     }
 
     /**
@@ -89,12 +83,6 @@ class HomeController extends Controller
      */
     public function edit($id)
     {
-        $notes = Note::select('notes.*')
-            ->where('user_id', '=', \Auth::id())
-            ->whereNull('deleted_at')
-            ->orderBy('updated_at', 'DESC')
-            ->get();
-
         // 条件に一致するデータを取得する
         $edit_note = Note::select('notes.*', 'tags.id AS tag_id')
             ->leftJoin('note_tags', 'note_tags.note_id', '=', 'notes.id')
@@ -115,7 +103,7 @@ class HomeController extends Controller
             ->orderBy('id', 'DESC')
             ->get();
 
-        return view('edit', compact('notes', 'edit_note', 'include_tags', 'tags'));
+        return view('edit', compact('edit_note', 'include_tags', 'tags'));
     }
 
     /**
@@ -145,7 +133,6 @@ class HomeController extends Controller
                 // note_tagsにインサートして、ノートとタグを紐づける
                 NoteTag::insert(['note_id' => $posts['note_id'], 'tag_id' => $tag_id]);
             }
-
         });
         // ===== トランザクション終了 =====
 
