@@ -14,9 +14,16 @@
                     @csrf
                     <div class="flex flex-wrap">
                         <label for="note" class="text-gray-700 w-full">
-                            <textarea id="note" name="content" class="form-input w-full mb-6 sm:mb-8 px-4 py-2 text-2xl text-gray-700 placeholder-gray-400 rounded-lg border-2 border-gray-300 focus:outline-none focus:ring-4 focus:ring-purple-600 focus:border-transparent" rows="10" placeholder="Enter your content here..."></textarea>
+                            <textarea id="note" name="content" class="form-input w-full mb-6 sm:mb-8 px-4 py-2 text-2xl text-gray-700 placeholder-gray-400 rounded-lg border-2 border-gray-300 focus:outline-none focus:ring-4 focus:ring-purple-600 focus:border-transparent {{ $errors->has('content') ? "border-4 border-red-600" : "" }}" rows="10" placeholder="Enter your content here..."></textarea>
                         </label>
                     </div>
+                    {{--バリデーションエラーが発生した場合にエラー文を表示させる--}}
+                    @error('content')
+                        <div class="p-4 mb-6 sm:mb-8 bg-red-200 border-red-600 border-l-4 text-red-600" role="alert">
+                            <p class="font-bold">Error</p>
+                            <p>Note content is required.</p>
+                        </div>
+                    @enderror
                     <div class="flex flex-wrap mb-6 sm:mb-8">
                         {{--foreachでDBから取得したタグを一覧表示する--}}
                         @foreach($tags as $tag)
