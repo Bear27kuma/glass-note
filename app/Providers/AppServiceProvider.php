@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Models\Note;
+use App\Models\Tag;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -33,8 +34,13 @@ class AppServiceProvider extends ServiceProvider
                 ->orderBy('updated_at', 'DESC')
                 ->get();
 
+            $tags = Tag::where('user_id', '=', \Auth::id())
+                ->whereNull('deleted_at')
+                ->orderBy('id', 'DESC')
+                ->get();
+
             // withの第一引数はViewで使う時の名前、第二引数は渡したい変数or配列名
-            $view->with('notes', $notes);
+            $view->with('notes', $notes)->with('tags', $tags);
         });
     }
 }

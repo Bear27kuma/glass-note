@@ -16,7 +16,7 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 </head>
-<body class="bg-gray-100 h-screen antialiased leading-none font-sans text-xl">
+<body class="bg-gray-100 w-full h-full antialiased leading-none font-sans text-xl">
     <div id="app">
         <header class="bg-blue-900 py-6">
             <div class="container mx-auto flex justify-between items-center px-6">
@@ -47,16 +47,17 @@
         </header>
 
         {{--3 Columns Layout--}}
-        <div class="bg-gray-300 grid sm:grid-cols-12 note-height sm:p-24">
+        <div class="bg-gray-300 grid sm:grid-cols-12 sm:p-24 h-full w-full">
             <div class="sm:col-span-2">
                 <section class="flex flex-col break-words bg-white sm:border-1 sm:rounded-l-lg sm:shadow-sm sm:shadow-lg">
                     <header class="font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 sm:rounded-tl-lg">
-                        左カラム
+                        Tags List
                     </header>
-                    <div class="w-full p-6">
-                        <p class="text-gray-700">
-                            You are in the left column!
-                        </p>
+                    <div class="w-full p-3 pt-6 flex flex-wrap justify-around ">
+                        <a href="/" class="w-full mb-6 px-2 py-1 text-white font-semibold text-center bg-indigo-600 border-2 border-indigo-600 rounded-md transition ease-in duration-300 focus:outline-none hover:border-indigo-500 hover:bg-indigo-500">All</a>
+                        @foreach($tags as $tag)
+                            <a href="/?tag={{ $tag['id'] }}" class="mb-3 px-2 py-1 text-indigo-600 font-semibold border-2 border-indigo-600 rounded-md transition ease-in duration-200 hover:bg-indigo-600 hover:text-white">{{ $tag['name'] }}</a>
+                        @endforeach
                     </div>
                 </section>
             </div>
@@ -65,7 +66,7 @@
                     <header class="font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8">
                         Notes List
                     </header>
-                    <div class="w-full p-3 overflow-scroll">
+                    <div class="w-full px-3 py-6 overflow-scroll">
                         <ul class="flex flex-col">
                             {{--ノートの内容は配列で渡されるため、ループ処理で表示させる--}}
                             @foreach($notes as $note)
