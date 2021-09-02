@@ -16,7 +16,7 @@
                     </div>
                     <div class="flex flex-wrap mb-6 sm:mb-8">
                         @foreach($tags as $tag)
-                            <div class="flex item-center mr-4">
+                            <div class="flex item-center mr-4 checkbox">
                                 <input type="checkbox" name="tags[]" id="{{ $tag['id'] }}" value="{{ $tag['id'] }}" class="h-6 w-6 border border-gray-100 rounded-md focus:outline-none">
                                 <label class="text-gray-700 font-normal ml-1" for="{{ $tag['id'] }}">{{ $tag['name'] }}</label>
                             </div>
