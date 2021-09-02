@@ -8,12 +8,14 @@
                     Edit a note
                     <form action="{{ route('destroy') }}" method="POST">
                         @csrf
+                        {{--削除機能も同様にどのノートを削除するのかをidで示すためinputのhiddenを設置--}}
                         <input type="hidden" name="note_id" value="{{ $edit_note[0]['id'] }}" />
                         <button class="absolute top-3 right-6 sm:right-8 px-4 py-2 text-lg text-white font-bold text-center font-semibold bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-offset-2 rounded-lg focus:ring-indigo-500 focus:ring-offset-indigo-200 transition ease-in duration-200" type="submit">Delete</button>
                     </form>
                 </header>
                 <form class="w-full my-6 px-6 sm:my-8 sm:px-8" action="{{ route('update') }}" method="POST">
                     @csrf
+                    {{--どのノートを編集しているかを示すため、inputのhiddenでノートのidを埋め込んでおく → コントローラー側でどのノートをupdateさせるかが理解できる--}}
                     <input type="hidden" name="note_id" value="{{ $edit_note[0]['id'] }}" />
                     <div class="flex flex-wrap">
                         <label for="note" class="text-gray-700 w-full">
@@ -23,6 +25,8 @@
                     <div class="flex flex-wrap mb-6 sm:mb-8">
                         @foreach($tags as $tag)
                             <div class="flex item-center mr-4 checkbox">
+                                {{--三項演算子で紐づいているタグだけチェックを入れる処理を記述する--}}
+                                {{--もし$include_tagsにループで回っているタグのidが含まれれば、checkedをつける--}}
                                 <input type="checkbox" name="tags[]" id="{{ $tag['id'] }}" value="{{ $tag['id'] }}" {{ in_array($tag['id'], $include_tags) ? 'checked' : '' }} class="h-6 w-6 border border-gray-100 rounded-md focus:outline-none"/>
                                 <label class="text-gray-700 font-normal ml-1" for="{{ $tag['id'] }}">{{ $tag['name'] }}</label>
                             </div>

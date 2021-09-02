@@ -7,7 +7,10 @@
                 <header class="font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 sm:rounded-tr-lg">
                     Create a new note
                 </header>
+                {{--route('store')と記述すると、自動的に/storeに書き換えられる--}}
                 <form class="w-full my-6 px-6 sm:my-8 sm:px-8" action="{{ route('store') }}" method="POST">
+                    {{--なりすまし送信防止の対策として@csrfをつける（Cross Site Request Forgeries）--}}
+                    {{--他人がなりすましてログインし、データを送信する攻撃手法。そのためLaravelのformではcsrfトークンを発行する--}}
                     @csrf
                     <div class="flex flex-wrap">
                         <label for="note" class="text-gray-700 w-full">
@@ -15,8 +18,10 @@
                         </label>
                     </div>
                     <div class="flex flex-wrap mb-6 sm:mb-8">
+                        {{--foreachでDBから取得したタグを一覧表示する--}}
                         @foreach($tags as $tag)
                             <div class="flex item-center mr-4 checkbox">
+                                {{--nameがtags[]と配列になっているのは、ループ処理で複数のタグが設定されることを想定して、配列形式で送信する--}}
                                 <input type="checkbox" name="tags[]" id="{{ $tag['id'] }}" value="{{ $tag['id'] }}" class="h-6 w-6 border border-gray-100 rounded-md focus:outline-none">
                                 <label class="text-gray-700 font-normal ml-1" for="{{ $tag['id'] }}">{{ $tag['name'] }}</label>
                             </div>
