@@ -12,3 +12,11 @@
     z-index: 10;
 }
 
+/*.checkbox input[type="checkbox"]+label::before {*/
+/*    border-color: red;*/
+/*}*/
+
+/*.checkbox input[type="checkbox"]:checked+label::after {*/
+/*    content: '';*/
+/*    background-color: #4F46E5;*/
+/*}*/

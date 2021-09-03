@@ -27,9 +27,9 @@
                     <div class="flex flex-wrap mb-6 sm:mb-8">
                         {{--foreachでDBから取得したタグを一覧表示する--}}
                         @foreach($tags as $tag)
-                            <div class="flex item-center mr-4 checkbox">
+                            <div class="flex item-center flex-wrap mr-4 ">
                                 {{--nameがtags[]と配列になっているのは、ループ処理で複数のタグが設定されることを想定して、配列形式で送信する--}}
-                                <input type="checkbox" name="tags[]" id="{{ $tag['id'] }}" value="{{ $tag['id'] }}" class="h-6 w-6 border border-gray-100 rounded-md focus:outline-none">
+                                <input type="checkbox" name="tags[]" id="{{ $tag['id'] }}" value="{{ $tag['id'] }}" class="form-checkbox h-6 w-6 rounded-full border-2 border-gray-300 text-indigo-600 focus:outline-none focus:ring-0 focus:border-gray-300">
                                 <label class="text-gray-700 font-normal ml-1" for="{{ $tag['id'] }}">{{ $tag['name'] }}</label>
                             </div>
                         @endforeach
