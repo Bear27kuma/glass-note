@@ -48,10 +48,10 @@
         </header>
 
         {{--3 Columns Layout--}}
-        <div class="bg-gray-300 grid sm:grid-cols-12 sm:p-24 h-full w-full">
-            <div class="sm:col-span-2">
-                <section class="flex flex-col break-words bg-white sm:border-1 sm:rounded-l-lg sm:shadow-sm sm:shadow-lg">
-                    <header class="font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 sm:rounded-tl-lg">
+        <div class="bg-gray-300 grid sm:grid-cols-12 lg:p-24 sm:p-8 p-3 w-full h-full">
+            <div class="md:col-span-2 sm:col-span-5">
+                <section class="flex flex-col break-words bg-white sm:border-1 md:rounded-l-lg sm:rounded-tl-lg rounded-t-lg sm:shadow-sm sm:shadow-lg col-height">
+                    <header class="font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 sm:rounded-tl-lg sm:rounded-tr-none rounded-t-lg">
                         Tags List
                     </header>
                     <div class="w-full p-3 pt-6 flex flex-wrap justify-around ">
@@ -62,12 +62,12 @@
                     </div>
                 </section>
             </div>
-            <div class="sm:col-span-4">
-                <section class="flex flex-col break-words bg-white sm:border-1 sm:shadow-sm sm:shadow-lg">
+            <div class="md:col-span-4 sm:col-span-7">
+                <section class="flex flex-col break-words bg-white sm:border-1 sm:shadow-sm sm:shadow-lg col-height-list">
                     <header class="font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8">
                         Notes List
                     </header>
-                    <div class="w-full px-3 py-6 overflow-scroll">
+                    <div class="w-full px-3 py-6 h-full overflow-scroll">
                         <ul class="flex flex-col">
                             {{--ノートの内容は配列で渡されるため、ループ処理で表示させる--}}
                             @foreach($notes as $note)
@@ -91,7 +91,7 @@
                     </div>
                 </section>
             </div>
-            <div class="sm:col-span-6 ">
+            <div class="md:col-span-6 sm:col-span-12">
                 @yield('content')
             </div>
         </div>

@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <main class="sm:container">
+    <main>
         <div class="w-full">
-            <section class="flex flex-col break-words bg-white sm:border-1 sm:rounded-r-lg sm:shadow-sm sm:shadow-lg">
-                <header class="font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 sm:rounded-tr-lg">
+            <section class="w-full flex flex-col break-words bg-white sm:border-1 md:rounded-r-lg md:rounded-bl-none rounded-b-lg sm:shadow-sm sm:shadow-lg">
+                <header class="font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 md:rounded-tr-lg">
                     Create a new note
                 </header>
                 {{--route('store')と記述すると、自動的に/storeに書き換えられる--}}

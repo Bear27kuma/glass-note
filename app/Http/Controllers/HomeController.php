@@ -67,9 +67,12 @@ class HomeController extends Controller
                 // note_tagsにインサートして、ノートとタグを紐づける
                 NoteTag::insert(['note_id' => $note_id, 'tag_id' => $tag_id]);
             }
+
             // 既存タグが紐付けられた場合 -> note_tagsにインサート
-            foreach($posts['tags'] as $tag) {
-                NoteTag::insert(['note_id' => $note_id, 'tag_id' => $tag]);
+            if (!empty($posts['tags'])) {
+                foreach($posts['tags'] as $tag) {
+                    NoteTag::insert(['note_id' => $note_id, 'tag_id' => $tag]);
+                }
             }
         });
         // ===== トランザクション終了 =====
@@ -122,8 +125,10 @@ class HomeController extends Controller
             // 一旦ノートとタグの紐付けを削除 → 中間テーブルを一旦削除
             NoteTag::where('note_id', '=', $posts['note_id'])->delete();
             // 再度ノートとタグの紐付け
-            foreach($posts['tags'] as $tag) {
-                NoteTag::insert(['note_id' => $posts['note_id'], 'tag_id' => $tag]);
+            if (!empty($posts['tags'])) {
+                foreach($posts['tags'] as $tag) {
+                    NoteTag::insert(['note_id' => $posts['note_id'], 'tag_id' => $tag]);
+                }
             }
             // 新規タグがすでにtagsテーブルに存在するのかチェック
             $tag_exists = Tag::where('user_id', '=', \Auth::id())->where('name', '=', $posts['new_tag'])->exists();
