@@ -5,17 +5,11 @@
 @endsection
 
 @section('content')
-    <main class="sm:container">
+    <main>
         <div class="w-full">
-            <section class="flex flex-col break-words bg-white sm:border-1 sm:rounded-r-lg sm:shadow-sm sm:shadow-lg">
-                <header class="relative font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 sm:rounded-tr-lg">
+            <section class="flex flex-col break-words bg-white backdrop-filter backdrop-blur-lg bg-opacity-20 sm:border-1 md:rounded-r-lg md:rounded-bl-none rounded-b-lg shadow-2xl">
+                <header class="relative font-semibold bg-gray-200 backdrop-filter backdrop-blur-md bg-opacity-30 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 md:rounded-tr-lg">
                     Edit a note
-                    {{--<form action="{{ route('destroy') }}" method="POST" id="delete-form">--}}
-                    {{--    @csrf--}}
-                    {{--    --}}{{--削除機能も同様にどのノートを削除するのかをidで示すためinputのhiddenを設置--}}
-                    {{--    <input type="hidden" name="note_id" value="{{ $edit_note[0]['id'] }}" />--}}
-                    {{--    --}}
-                    {{--</form>--}}
                     <button class="absolute top-3 right-6 sm:right-8 px-4 py-2 text-lg text-white font-bold text-center font-semibold bg-red-600 hover:bg-red-800 focus:outline-none rounded-lg transition ease-in duration-200" onclick="popUpModule.showPopUp(event);">Delete</button>
                 </header>
                 <form class="w-full my-6 px-6 sm:my-8 sm:px-8" action="{{ route('update') }}" method="POST">
@@ -24,7 +18,7 @@
                     <input type="hidden" name="note_id" value="{{ $edit_note[0]['id'] }}" />
                     <div class="flex flex-wrap">
                         <label for="note" class="text-gray-700 w-full">
-                            <textarea id="note" name="content" class="form-input w-full mb-6 sm:mb-8 px-4 py-2 text-2xl text-gray-700 placeholder-gray-400 rounded-lg border-2 border-gray-300 focus:outline-none focus:ring-4 focus:ring-purple-600 focus:border-transparent {{ $errors->has('content') ? "border-4 border-red-600" : "" }}" rows="10" placeholder="Enter your content here...">{{ $edit_note[0]['content'] }}</textarea>
+                            <textarea id="note" name="content" class="form-input w-full mb-6 sm:mb-8 px-4 py-2 text-2xl font-medium text-gray-700 placeholder-gray-500 bg-white backdrop-filter backdrop-blur-md bg-opacity-50 rounded-lg border-2 border-gray-500 focus:outline-none focus:ring-4 focus:ring-purple-600 focus:border-transparent {{ $errors->has('content') ? "border-4 border-red-600" : "" }}" rows="10" placeholder="Enter your content here...">{{ $edit_note[0]['content'] }}</textarea>
                         </label>
                     </div>
                     @error('content')
@@ -35,15 +29,15 @@
                     @enderror
                     <div class="flex flex-wrap mb-6 sm:mb-8">
                         @foreach($tags as $tag)
-                            <div class="flex item-center mr-4 checkbox">
+                            <div class="flex item-center mr-4 mb-2">
                                 {{--三項演算子で紐づいているタグだけチェックを入れる処理を記述する--}}
                                 {{--もし$include_tagsにループで回っているタグのidが含まれれば、checkedをつける--}}
-                                <input type="checkbox" name="tags[]" id="{{ $tag['id'] }}" value="{{ $tag['id'] }}" {{ in_array($tag['id'], $include_tags) ? 'checked' : '' }} class="form-checkbox h-6 w-6 rounded-full border-2 border-gray-300 text-indigo-600 focus:outline-none focus:ring-0 focus:border-gray-300">
-                                <label class="text-gray-700 font-normal ml-1" for="{{ $tag['id'] }}">{{ $tag['name'] }}</label>
+                                <input type="checkbox" name="tags[]" id="{{ $tag['id'] }}" value="{{ $tag['id'] }}" {{ in_array($tag['id'], $include_tags) ? 'checked' : '' }} class="form-checkbox h-6 w-6 rounded-full bg-white backdrop-filter backdrop-blur-md bg-opacity-50 border-2 border-gray-500 text-indigo-600 focus:outline-none focus:ring-0 focus:border-gray-300">
+                                <label class="text-gray-700 font-medium ml-1" for="{{ $tag['id'] }}">{{ $tag['name'] }}</label>
                             </div>
                         @endforeach
                     </div>
-                    <input type="text" class="appearance-none rounded-lg border-2 border-gray-300 mb-6 sm:mb-8 py-2 px-4 w-1/2 text-2xl text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-4 focus:ring-purple-600 focus:border-transparent" name="new_tag" placeholder="Add a new tag...">
+                    <input type="text" class="appearance-none rounded-lg border-2 border-gray-500 bg-white backdrop-filter backdrop-blur-md bg-opacity-50 mb-6 sm:mb-8 py-2 px-4 w-1/2 text-2xl font-medium text-gray-700 placeholder-gray-500 focus:outline-none focus:ring-4 focus:ring-purple-600 focus:border-transparent" name="new_tag" placeholder="Add a new tag...">
                     <button type="submit" class="w-full px-4 py-2 text-2xl text-white text-center font-semibold bg-indigo-600 hover:bg-indigo-800 focus:outline-none focus:ring-4 focus:ring-offset-2 rounded-lg focus:ring-indigo-500 focus:ring-offset-indigo-200 transition ease-in duration-200">Update</button>
                 </form>
             </section>
