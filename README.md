@@ -8,6 +8,9 @@ UIのスタイリングにはGlassmorphismを採用。
 
 ## スクリーンショット
 
+![Screenshot01](https://user-images.githubusercontent.com/39920490/132076394-b6503473-2a26-4064-8554-07007396c739.png)
+![Screenshot02](https://user-images.githubusercontent.com/39920490/132076437-7537d2bd-5385-4973-96c4-f654f0771c6b.png)
+
 
 ## 開発環境
 
