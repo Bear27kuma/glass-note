@@ -16,6 +16,8 @@
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+    <link rel="icon" href="{{ asset('favicon.ico') }}">
+    {{--<link rel="icon" type="image/x-icon" href="image/icon.png">--}}
 </head>
 <body class="bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400 w-full h-full antialiased leading-none font-sans text-xl relative">
     <div id="app">
