@@ -44,7 +44,7 @@
         </div>
     </main>
     <div class="popup-cover hidden items-center justify-center" id="popup">
-        <div class="shadow-lg rounded-2xl p-4 bg-white dark:bg-gray-800 w-80 m-auto">
+        <div class="shadow-lg rounded-2xl p-4 bg-white backdrop-filter backdrop-blur-xl bg-opacity-10 dark:bg-gray-800 w-80 m-auto">
             <div class="w-full h-full text-center">
                 <div class="flex h-full flex-col justify-between">
                     <svg width="40" height="40" class="mt-4 w-12 h-12 m-auto text-indigo-500" fill="currentColor" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
@@ -54,7 +54,7 @@
                     <p class="text-gray-800 dark:text-gray-200 text-2xl font-bold mt-4">
                         Remove card
                     </p>
-                    <p class="text-gray-600 dark:text-gray-400 text-lg py-2 px-6">
+                    <p class="text-gray-800 font-semibold text-xl py-2 px-6">
                         Are you sure you want to delete this note ?
                     </p>
                     <div class="flex flex-col items-center justify-between gap-4 w-full mt-8">

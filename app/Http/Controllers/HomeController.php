@@ -60,9 +60,9 @@ class HomeController extends Controller
             // 新規タグがすでにtagsテーブルに存在するのかチェック
             // where文は続けて書くことができ、その場合「かつ」の意味になる
             $tag_exists = Tag::where('user_id', '=', \Auth::id())->where('name', '=', $posts['new_tag'])->exists();
-            // 新規タグが入っているかのチェック（既存タグの中にない場合に新しくインサートする）
+            // 新規タグが入っているかのチェック（また、既存タグの中に一致しない場合に新しくインサートする）
             if (!empty($posts['new_tag']) && !$tag_exists) {
-                // 新規タグが存在しなければ、tagsテーブルにインサート → IDを取得（中間テーブルにtag_idを入れるため）
+                // 新規タグが存在すれば、tagsテーブルにインサート → IDを取得（中間テーブルにtag_idを入れるため）
                 $tag_id = Tag::insertGetId(['user_id' => \Auth::id(), 'name' => $posts['new_tag']]);
                 // note_tagsにインサートして、ノートとタグを紐づける
                 NoteTag::insert(['note_id' => $note_id, 'tag_id' => $tag_id]);
